@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_500">#DFCECE</color>
+    <color name="purple_700">#D5C4C4</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="fab_border_color1">#0A6A1B9A</color>
+    <color name="fab_background_color">#7FF7B6</color>
+    <color name="fab_ripple_color">#80A19498</color>
+</resources>

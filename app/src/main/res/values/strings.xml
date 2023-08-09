@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Создай тест</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="NameTest">Название теста</string>
+    <string name="AddQuestionBtn">Добавить вопрос</string>
+    <string name="desc">Картинка</string>
+
+</resources>

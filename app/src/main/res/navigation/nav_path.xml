@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/listTestFragment">
+
+    <fragment
+        android:id="@+id/listTestFragment"
+        android:name="quiz.example.addtestfastcode.presentation.fragments.ListTestFragment"
+        android:label="Список вопросов"
+        tools:layout="@layout/fragment_list_test" >
+        <action
+            android:id="@+id/action_listTestFragment_to_addTestFragment"
+            app:destination="@id/addTestFragment" />
+        <action
+            android:id="@+id/action_listTestFragment_to_passingTheTest"
+            app:destination="@id/passingTheTest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTestFragment"
+        android:name="quiz.example.addtestfastcode.presentation.fragments.AddTestFragment"
+        android:label="Добавить тест"
+        tools:layout="@layout/fragment_add_test" >
+        <action
+            android:id="@+id/action_addTestFragment_to_listTestFragment"
+            app:destination="@id/listTestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/passingTheTest"
+        android:name="quiz.example.addtestfastcode.presentation.fragments.PassingTheTest"
+        android:label="Тест"
+        tools:layout="@layout/fragment_passing_the_test" >
+        <action
+            android:id="@+id/action_passingTheTest_to_listTestFragment"
+            app:destination="@id/listTestFragment" />
+    </fragment>
+</navigation>
