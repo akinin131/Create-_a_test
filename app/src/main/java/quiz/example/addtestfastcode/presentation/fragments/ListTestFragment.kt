@@ -63,8 +63,12 @@ class ListTestFragment : Fragment() {
             val bundle = Bundle()
             bundle.putSerializable("test",test)
             APP.navController.navigate(R.id.action_listTestFragment_to_passingTheTest,bundle)
-
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllTests()
     }
 
 }

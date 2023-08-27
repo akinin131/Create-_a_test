@@ -33,7 +33,7 @@ class BottomSheetAnswer : BottomSheetDialogFragment() {
     companion object Singleton {
         var answer1 = ""
     }
-    override fun getTheme() = R.style.AppBottomSheetDialogTheme
 
+    override fun getTheme() = R.style.AppBottomSheetDialogTheme
 }
 

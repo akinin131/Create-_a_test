@@ -40,7 +40,7 @@ class PassingTheTest : Fragment() {
 
             viewModel.questionAndAnswerObservable.observe(viewLifecycleOwner) { (question, answer) ->
 
-                binding.textViewQuestion.text = question.text
+                binding.textViewQuestion.text = "Вопрос: ${question.text}"
                 answer1 =  answer.text
 
             }

@@ -42,8 +42,16 @@ class AddTestFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_done -> {
-                saveTest()
-                requireActivity().onBackPressed()
+                if (addedQuestions.isNullOrEmpty()) {
+
+                  Toast.makeText(requireContext(),"Добавьте хотя бы 1 вопрос", Toast.LENGTH_LONG).show()
+
+                } else if (editTextTestName.text.isEmpty()){
+                    Toast.makeText(requireContext(),"Добавьте название теста", Toast.LENGTH_LONG).show()
+                }else{
+                    saveTest()
+                    requireActivity().onBackPressed()
+                }
                 return true
             }
 
