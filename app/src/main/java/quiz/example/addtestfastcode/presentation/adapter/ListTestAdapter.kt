@@ -16,6 +16,7 @@ import java.util.*
 class ListTestAdapter : RecyclerView.Adapter<ListTestAdapter.TestViewHolder>() {
 
     private var listTest = emptyList<Test>()
+
     private var onDeleteClickListener: OnDeleteClickListener? = null
 
     class TestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -54,9 +55,11 @@ class ListTestAdapter : RecyclerView.Adapter<ListTestAdapter.TestViewHolder>() {
 
     override fun onViewAttachedToWindow(holder: TestViewHolder) {
         super.onViewAttachedToWindow(holder)
+
         holder.itemView.setOnClickListener {
             ListTestFragment.clickNote(listTest[holder.adapterPosition])
         }
+
     }
 
     override fun onViewDetachedFromWindow(holder: TestViewHolder) {

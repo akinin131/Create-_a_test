@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_listTestFragment_to_passingTheTest"
             app:destination="@id/passingTheTest" />
+        <action
+            android:id="@+id/action_listTestFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 
     <fragment
@@ -34,6 +37,16 @@
         tools:layout="@layout/fragment_passing_the_test" >
         <action
             android:id="@+id/action_passingTheTest_to_listTestFragment"
+            app:destination="@id/listTestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="quiz.example.addtestfastcode.presentation.fragments.ProfileFragment"
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_listTestFragment"
             app:destination="@id/listTestFragment" />
     </fragment>
 </navigation>

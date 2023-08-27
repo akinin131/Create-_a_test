@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "267949679838",
+    "project_id": "swift-seeker-395416",
+    "storage_bucket": "swift-seeker-395416.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267949679838:android:94fbc3aa95d341f4328e4f",
+        "android_client_info": {
+          "package_name": "quiz.example.addtestfastcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267949679838-ag497hkk4aruc1pa2alg2i7qojrjijeg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "quiz.example.addtestfastcode",
+            "certificate_hash": "47add699264fcac89fae652012f5bf542e9fdce9"
+          }
+        },
+        {
+          "client_id": "267949679838-17pikobp0fuvjsg6li0nov0uugl1t55o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD090ZdAyCd7LQX6LzNuh8ATA1FC6YOZm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267949679838-17pikobp0fuvjsg6li0nov0uugl1t55o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,9 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="350dp"
-            android:gravity="center_horizontal"
-            android:paddingTop="20dp"
-            android:text="@string/hello_blank_fragment"
+            android:padding="15dp"
+            android:paddingTop="10dp"
+            tools:text="erbgerber krpo oper toretwertj[wejrtj[0ewrijt[ejhwrtjhe[r0tj[w0erjht[erjhti9hjewr[tier[0oithj[0eowrtjh[0oerjhtwejth[9hieter9ijto0ierht[oewrjti9wr[tr[twer[oihtoierht[orwehjtopihewro[ither[oith[ioerhtioerhtoiwerhtiroweht[woerht[weirth[h[iewrht[iewrht[wetho[irehto[iehrwt[oiehrt[oiewhrt[oiwerhto[iewrhtio[hert[oiheriot[herwio[theirow[htio[ewrht[ioerwhtoewrht[ewrtiewrhtiowerhtiowerhtoiwherioooohtoirwehtiowerth[er[otihw[oriethrehit[er0therwtehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhtwt590h5w0t9h309h0q940q23i40932u4q23402=93hj9r8hq2890th43hg843hg4hg58gh9w58gh95gh4908wh50hj0wq95jh0qh=0594j=09qj45=09j5q4=90gj059j90=gj90=qj509gjq09=53hj0hg08953h089h095hj09q350"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </ScrollView>
