@@ -1,6 +1,7 @@
 package quiz.example.domain.domain.models
 
 import androidx.room.*
+import java.io.Serializable
 
 @Entity(tableName = "questions")
 data class Question(
@@ -12,4 +13,8 @@ data class Question(
     val testId: Long?,
     @Embedded
     val answer: Answer
-)
+) : Serializable
+{
+    fun copy(text: String, answerText: String) =
+        copy(text = text, answer = answer.copy(text = answerText))
+}

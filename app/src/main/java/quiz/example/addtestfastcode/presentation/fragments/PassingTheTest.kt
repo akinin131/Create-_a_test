@@ -1,5 +1,6 @@
 package quiz.example.addtestfastcode.presentation.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 
@@ -9,7 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import quiz.example.addtestfastcode.APP
+import quiz.example.addtestfastcode.R
 
 import quiz.example.addtestfastcode.databinding.FragmentPassingTheTestBinding
 
@@ -19,19 +22,21 @@ import quiz.example.domain.domain.models.Test
 
 class PassingTheTest : Fragment() {
 
-    private lateinit var binding: FragmentPassingTheTestBinding
-    private lateinit var viewModel: PassingTheTestViewModel
+    private var _binding: FragmentPassingTheTestBinding?=null
+    private val binding get() = _binding!!
+    private val viewModel by viewModel<PassingTheTestViewModel>()
     private var bottomSheetFragment: BottomSheetAnswer? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentPassingTheTestBinding.inflate(layoutInflater, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentPassingTheTestBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[PassingTheTestViewModel::class.java]
+        AddTestFragment.context = requireContext()
 
         val bundle = arguments
         if (bundle != null && bundle.containsKey("test")) {
@@ -57,11 +62,16 @@ class PassingTheTest : Fragment() {
                 if (bottomSheetFragment == null) {
                     bottomSheetFragment = BottomSheetAnswer()
                 }
+
                 if (!bottomSheetFragment!!.isAdded) {
-                    // Открываем Bottom Sheet и передаем текст ответа
+
                     bottomSheetFragment?.show(requireActivity().supportFragmentManager, bottomSheetFragment?.tag)
 
                 }
+            }
+            binding.editBtn.setOnClickListener{
+
+                APP.navController.navigate(R.id.action_passingTheTest_to_editTestFragment,bundle)
             }
         }
     }
@@ -70,6 +80,11 @@ class PassingTheTest : Fragment() {
         fun clickToast(context: Context){
             Toast.makeText(context, "Вопросы закончились", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
 

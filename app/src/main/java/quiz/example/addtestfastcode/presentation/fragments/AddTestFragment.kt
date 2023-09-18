@@ -1,6 +1,7 @@
 package quiz.example.addtestfastcode.presentation.fragments
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -8,74 +9,73 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import quiz.example.addtestfastcode.R
-import quiz.example.addtestfastcode.presentation.adapter.ListTestAdapter
+import quiz.example.addtestfastcode.databinding.FragmentAddTestBinding
 import quiz.example.addtestfastcode.presentation.adapter.QuestionAdapter
-import quiz.example.addtestfastcode.presentation.interfaces.OnDeleteClickListener
 import quiz.example.addtestfastcode.presentation.interfaces.OnDeleteClickListenerQuestion
 import quiz.example.addtestfastcode.presentation.viewModel.TestViewModel
-import quiz.example.domain.domain.models.Question
-import quiz.example.domain.domain.models.Test
 
 class AddTestFragment : Fragment() {
 
     private val viewModel by viewModel<TestViewModel>()
-    private lateinit var editTextTestName: EditText
-    private lateinit var btnOpenDialog: Button
-    private val addedQuestions = mutableListOf<Pair<String, String>>() // Pair<Question, Answer>
+    private var _binding: FragmentAddTestBinding? = null
+    private val binding get() = _binding!!
+    private val addedQuestions = mutableListOf<Pair<String, String>>()
     private lateinit var adapter: QuestionAdapter
 
     private var testId: Long = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_fragment, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentAddTestBinding.inflate(inflater, container, false)
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_done -> {
-                if (addedQuestions.isNullOrEmpty()) {
-
-                  Toast.makeText(requireContext(),"Добавьте хотя бы 1 вопрос", Toast.LENGTH_LONG).show()
-
-                } else if (editTextTestName.text.isEmpty()){
-                    Toast.makeText(requireContext(),"Добавьте название теста", Toast.LENGTH_LONG).show()
-                }else{
-                    saveTest()
-                    requireActivity().onBackPressed()
-                }
-                return true
-            }
-
-            R.id.action_done1 -> {
-                requireActivity().onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_add_test, container, false)
-        editTextTestName = view.findViewById(R.id.editTextTextPersonName)
-        btnOpenDialog = view.findViewById(R.id.button)
-
-        btnOpenDialog.setOnClickListener {
+        binding.button.setOnClickListener {
             showDialog()
         }
 
-        return view
+        return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+
+                menuInflater.inflate(R.menu.menu_fragment, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+
+                return when (menuItem.itemId) {
+                    R.id.action_done -> {
+                        if (addedQuestions.isEmpty()) {
+
+                            Toast.makeText(requireContext(),"Добавьте хотя бы 1 вопрос", Toast.LENGTH_LONG).show()
+
+                        } else if (binding.editTextTextPersonName.text.isEmpty()){
+                            Toast.makeText(requireContext(),"Добавьте название теста", Toast.LENGTH_LONG).show()
+                        }else{
+                            saveTest()
+                            requireActivity().onBackPressed()
+                        }
+                        return true
+                    }
+                    R.id.action_done1 -> {
+                        requireActivity().onBackPressed()
+                        return true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         viewModel.testsLiveData.observe(viewLifecycleOwner) { tests ->
             testId = tests.maxByOrNull { it.id }?.id?.plus(1) ?: 1
@@ -129,9 +129,17 @@ class AddTestFragment : Fragment() {
     }
 
     private fun saveTest() {
-        val testName = editTextTestName.text.toString()
+        val testName = binding.editTextTextPersonName.text.toString()
         viewModel.saveTest(testName)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    companion object{
+            lateinit var context: Context
+    }
 
 }

@@ -8,21 +8,21 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import quiz.example.addtestfastcode.R
 import quiz.example.addtestfastcode.databinding.FragmentBottomSheetAnswerBinding
 
-
 class BottomSheetAnswer : BottomSheetDialogFragment() {
-    private lateinit var binding: FragmentBottomSheetAnswerBinding
+    private var _binding: FragmentBottomSheetAnswerBinding?=null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentBottomSheetAnswerBinding.inflate(inflater, container, false)
+        _binding = FragmentBottomSheetAnswerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentBottomSheetAnswerBinding.bind(view)
+        _binding = FragmentBottomSheetAnswerBinding.bind(view)
         updateAnswerText(answer1)
     }
 
@@ -35,5 +35,10 @@ class BottomSheetAnswer : BottomSheetDialogFragment() {
     }
 
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
 

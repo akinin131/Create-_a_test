@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_passingTheTest_to_listTestFragment"
             app:destination="@id/listTestFragment" />
+        <action
+            android:id="@+id/action_passingTheTest_to_editTestFragment"
+            app:destination="@id/editTestFragment" />
     </fragment>
 
     <fragment
@@ -49,4 +52,25 @@
             android:id="@+id/action_profileFragment_to_listTestFragment"
             app:destination="@id/listTestFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editTestFragment"
+        android:name="quiz.example.addtestfastcode.presentation.fragments.EditTestFragment"
+        android:label="fragment_edit_test"
+        tools:layout="@layout/fragment_edit_test" >
+        <action
+            android:id="@+id/action_editTestFragment_to_passingTheTest"
+            app:destination="@id/passingTheTest" />
+        <action
+            android:id="@+id/action_editTestFragment_to_customDialogFragment"
+            app:destination="@id/customDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/customDialogFragment"
+        android:name="quiz.example.addtestfastcode.presentation.fragments.CustomDialogFragment"
+        android:label="fragment_custom_dialog"
+        tools:layout="@layout/fragment_custom_dialog" >
+        <action
+            android:id="@+id/action_customDialogFragment_to_editTestFragment"
+            app:destination="@id/editTestFragment" />
+    </dialog>
 </navigation>

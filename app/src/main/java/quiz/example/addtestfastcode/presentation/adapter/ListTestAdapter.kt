@@ -59,7 +59,6 @@ class ListTestAdapter : RecyclerView.Adapter<ListTestAdapter.TestViewHolder>() {
         holder.itemView.setOnClickListener {
             ListTestFragment.clickNote(listTest[holder.adapterPosition])
         }
-
     }
 
     override fun onViewDetachedFromWindow(holder: TestViewHolder) {

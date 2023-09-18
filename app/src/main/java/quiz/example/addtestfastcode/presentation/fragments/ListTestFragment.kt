@@ -8,7 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import quiz.example.addtestfastcode.APP
@@ -22,7 +22,8 @@ import quiz.example.domain.domain.models.Test
 
 @Suppress("DEPRECATION")
 class ListTestFragment : Fragment() {
-    private lateinit var binding: FragmentListTestBinding
+    private var _binding: FragmentListTestBinding?=null
+    private val binding get() = _binding!!
     private val viewModel by viewModel<TestViewModel>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListTestAdapter
@@ -51,7 +52,7 @@ class ListTestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentListTestBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentListTestBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -67,14 +68,14 @@ class ListTestFragment : Fragment() {
         recyclerView = binding.recyclerViewQuestions
         recyclerView.adapter = adapter
 
-
         viewModel.testsLiveData.observe(viewLifecycleOwner) { tests ->
             adapter.setList(tests)
-            viewModel.getAllTests()
+
         }
 
         binding.btnAddNewTest.setOnClickListener {
             APP.navController.navigate(R.id.action_listTestFragment_to_addTestFragment)
+
         }
 
         adapter.setOnDeleteClickListener(object : OnDeleteClickListener {
@@ -83,6 +84,7 @@ class ListTestFragment : Fragment() {
                 viewModel.getAllTests()
             }
         })
+        viewModel.getAllTests()
     }
 
     companion object{
@@ -96,6 +98,11 @@ class ListTestFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getAllTests()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

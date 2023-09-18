@@ -68,6 +68,8 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+
     implementation project(path: ":domain")
     implementation project(path: ":data")
 }
